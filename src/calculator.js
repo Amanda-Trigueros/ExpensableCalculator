@@ -24,54 +24,88 @@ function Counter() {
     }
 
   }
-
   function handleEqual() {
     let equal
-    switch (operant) {
-      case "+":
-        if(prevNumber && currentNumber) {
-          equal = (+prevNumber + +currentNumber)
-        
-        } else if(currentNumber === "") {
-          equal = (+prevNumber + +prevNumber)
-        }
-      break;
-      case "-":
-        if(prevNumber && currentNumber) {
-          equal = (+prevNumber - +currentNumber)
-        
-        } else if(currentNumber === "") {
-          equal = (+prevNumber - +prevNumber)
-        }
-      break;
-      case "x":
-        if(prevNumber && currentNumber) {
-          equal = (+prevNumber * +currentNumber)
-        
-        } else if(currentNumber === "") {
-          equal = (+prevNumber * +prevNumber)
-        }
-      break;
-      case "/":
-        if(prevNumber && currentNumber) {
-          equal = (+prevNumber / +currentNumber)
-        
-        } else if(currentNumber === "") {
-          equal = (+prevNumber / +prevNumber)
-        }
-      break;
-    
-      default:
-      break;
-    } 
-    
-    setResult(true)
-    setPrevNumber(null)
-    setCurrentNumber(equal)
-    setOperant(null)
 
-    return equal
+    if(prevNumber && currentNumber) {
+      equal = operator({operant,fisrt: prevNumber,second: currentNumber})
+    
+    } else if(currentNumber === "") {
+      console.log(prevNumber)
+      equal = operator({operant,fisrt: prevNumber,second: prevNumber})
+    }
+
+      setResult(true)
+      setPrevNumber(null)
+      setCurrentNumber(equal)
+      setOperant(null)
+  
+      return equal
   }
+
+  const operator = ({ operant, fisrt, second }) => {
+    const operants = {
+      "+": (a, b) => a + b,
+      "-": (a, b) => a - b,
+      "x": (a, b) => a * b,
+      "/": (a, b) => a / b,
+    };
+    console.log(fisrt)
+    console.log(second)
+  
+    const result = operants[operant](+fisrt, +second);
+    console.log(result);
+    return result;
+  };
+
+
+  // function handleEqual() {
+  //   let equal
+  //   switch (operant) {
+  //     case "+":
+  //       if(prevNumber && currentNumber) {
+  //         equal = (+prevNumber + +currentNumber)
+        
+  //       } else if(currentNumber === "") {
+  //         equal = (+prevNumber + +prevNumber)
+  //       }
+  //     break;
+  //     case "-":
+  //       if(prevNumber && currentNumber) {
+  //         equal = (+prevNumber - +currentNumber)
+        
+  //       } else if(currentNumber === "") {
+  //         equal = (+prevNumber - +prevNumber)
+  //       }
+  //     break;
+  //     case "x":
+  //       if(prevNumber && currentNumber) {
+  //         equal = (+prevNumber * +currentNumber)
+        
+  //       } else if(currentNumber === "") {
+  //         equal = (+prevNumber * +prevNumber)
+  //       }
+  //     break;
+  //     case "/":
+  //       if(prevNumber && currentNumber) {
+  //         equal = (+prevNumber / +currentNumber)
+        
+  //       } else if(currentNumber === "") {
+  //         equal = (+prevNumber / +prevNumber)
+  //       }
+  //     break;
+    
+  //     default:
+  //     break;
+  //   } 
+    
+  //   setResult(true)
+  //   setPrevNumber(null)
+  //   setCurrentNumber(equal)
+  //   setOperant(null)
+
+  //   return equal
+  // }
 
   function handleClick(event) {
     console.log(`hice click en ${event.target.value}`)
