@@ -27,15 +27,44 @@ function Counter() {
 
   function handleEqual() {
     let equal
-    if (operant === "+") {
-
-      if(prevNumber && currentNumber) {
-        equal = (+prevNumber + +currentNumber)
-      
-      } else if(currentNumber === "") {
-        equal = (+prevNumber + +prevNumber)
-      }
-    }
+    switch (operant) {
+      case "+":
+        if(prevNumber && currentNumber) {
+          equal = (+prevNumber + +currentNumber)
+        
+        } else if(currentNumber === "") {
+          equal = (+prevNumber + +prevNumber)
+        }
+      break;
+      case "-":
+        if(prevNumber && currentNumber) {
+          equal = (+prevNumber - +currentNumber)
+        
+        } else if(currentNumber === "") {
+          equal = (+prevNumber - +prevNumber)
+        }
+      break;
+      case "x":
+        if(prevNumber && currentNumber) {
+          equal = (+prevNumber * +currentNumber)
+        
+        } else if(currentNumber === "") {
+          equal = (+prevNumber * +prevNumber)
+        }
+      break;
+      case "/":
+        if(prevNumber && currentNumber) {
+          equal = (+prevNumber / +currentNumber)
+        
+        } else if(currentNumber === "") {
+          equal = (+prevNumber / +prevNumber)
+        }
+      break;
+    
+      default:
+      break;
+    } 
+    
     setResult(true)
     setPrevNumber(null)
     setCurrentNumber(equal)
