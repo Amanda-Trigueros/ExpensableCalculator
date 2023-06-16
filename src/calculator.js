@@ -2,54 +2,71 @@ import React from 'react';
 import Button from "./button"
 
 function Counter() {
-  const [number, setNumber] = React.useState(10);
   const [currentNumber, setCurrentNumber] = React.useState("0")
   const [operant, setOperant] = React.useState(null)
   const [prevNumber, setPrevNumber] = React.useState(null)
+  const [result, setResult] = React.useState(false)
 
   function handleOperant(event) {
-    setPrevNumber(currentNumber)
-    setCurrentNumber("")
+    
     setOperant(event.target.value)
+
+    if (!operant) {
+      setPrevNumber(currentNumber)
+      setCurrentNumber("")
+    }
+
+    if (prevNumber && operant && currentNumber) {
+       let equal = handleEqual()
+       setPrevNumber(equal)
+       setCurrentNumber("")
+       setOperant(event.target.value)
+    }
+
   }
 
   function handleEqual() {
-    let result
-
+    let equal
     if (operant === "+") {
 
       if(prevNumber && currentNumber) {
-      
-        result= +prevNumber + +currentNumber
+        equal = (+prevNumber + +currentNumber)
       
       } else if(currentNumber === "") {
-        result= +prevNumber + +prevNumber
+        equal = (+prevNumber + +prevNumber)
       }
-
-      
     }
-
-    
-
+    setResult(true)
     setPrevNumber(null)
-    setCurrentNumber(result)
+    setCurrentNumber(equal)
     setOperant(null)
+
+    return equal
   }
 
   function handleClick(event) {
     console.log(`hice click en ${event.target.value}`)
-    setNumber(event.target.value)
-    setCurrentNumber(currentNumber + event.target.value)
+
+    if (currentNumber === "0" || result) {
+      setCurrentNumber(event.target.value)
+      setResult(false)
+    }
+    else {
+      setCurrentNumber(currentNumber + event.target.value)
+    }
+
   }
 
   function handleReset(event) {
     console.log(`you restart the calculator`)
     setCurrentNumber("0")
+    setPrevNumber(null)
+    setOperant(null)
+    setResult(false)
   }
 
   return (
     <div>
-      <p>{number}</p>
       <p>{prevNumber} {operant} {currentNumber}</p>
 
       <Button value={1} onClick={handleClick}>1</Button>
