@@ -92,7 +92,9 @@ function Counter() {
         setCurrentNumber("0")
       } else if (currentNumber.length === 1 && prevNumber && operant ) {
          setCurrentNumber(null)
-      } 
+      } else if (currentNumber.length > 1) {
+         setCurrentNumber(currentNumber.slice(0,-1))
+      }
     } else if (!currentNumber && prevNumber && operant) {
         setCurrentNumber(prevNumber)
         setPrevNumber(null)
