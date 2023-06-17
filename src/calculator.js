@@ -1,8 +1,12 @@
+//  /** @jsxImportSource @emotion/react */
+//  import { css } from "@emotion/react";
+ // import styled from "@emotion/styled";
+ import { colors } from "./global/colors"
 import React from 'react';
 import Button from "./components/button"
-import { Keyboard, Header } from './components/keyboard';
+import {Calculator, Keyboard, Header, Display } from './components/keyboard';
 
-function Calculator({ category }) {
+function FunctionCalculator({ category }) {
   const [currentNumber, setCurrentNumber] = React.useState("0")
   const [operant, setOperant] = React.useState(null)
   const [prevNumber, setPrevNumber] = React.useState(null)
@@ -56,23 +60,37 @@ function Calculator({ category }) {
   };
 
   function handleClick(event) {
-    console.log(`hice click en ${event.target.value}`)
-
-    if (currentNumber === "0" || result) {
-
-      if(event.target.value ==="."){
-        setCurrentNumber("0"+ event.target.value)
-      }else if(currentNumber.includes(".")){
-        setCurrentNumber(currentNumber + event.target.value)
-      }else {
-      setCurrentNumber(event.target.value)
-      setResult(false)
-      }
-    } else {
-      setCurrentNumber(currentNumber + event.target.value)
+    console.log(`Hice click en ${event.target.value}`);
+  
+    if (event.target.value === "." && (currentNumber === "0" || result)) {
+      setCurrentNumber("0.");
+      setResult(false);
+    } else if (result && event.target.value !== ".") {
+      setCurrentNumber(event.target.value);
+      setResult(false);
+    } else if (!currentNumber) {
+      setCurrentNumber(event.target.value === "." ? "0." : event.target.value);
+    } else if (currentNumber === "0" && event.target.value === ".") {
+      setCurrentNumber("0.");
+    } else if (!currentNumber.includes(".") && event.target.value === "." && result) {
+      setCurrentNumber("0.");
+    } else if (!currentNumber.includes(".") && event.target.value !== ".") {
+      setCurrentNumber(currentNumber === "0" ? event.target.value : currentNumber + event.target.value);
+    } else if (currentNumber.includes(".") && event.target.value !== ".") {
+      setCurrentNumber(currentNumber + event.target.value);
+    } else if (currentNumber.includes(".") && event.target.value === "." && result) {
+      setCurrentNumber(currentNumber + event.target.value);
+      setResult(false);
+    } else if (currentNumber === "0" && event.target.value !== "0" && event.target.value !== ".") {
+      setCurrentNumber(event.target.value);
+    } else if (currentNumber === "0." && /[1-9]/.test(event.target.value)) {
+      setCurrentNumber(currentNumber + event.target.value);
+    } else if (/^\d+$/.test(currentNumber) && event.target.value === ".") {
+      setCurrentNumber(currentNumber + ".");
     }
-
   }
+  
+  
 
   function handleReset() {
     console.log(`you restart the calculator`)
@@ -104,11 +122,13 @@ function Calculator({ category }) {
   }
 
   return (
-    <div>
+    <Calculator>
       <Header name="Groceries">Add expense to</Header>
-      <Keyboard>
+      
+        <Display>
         <p>${prevNumber}{operant} {currentNumber}</p>
-        <div>
+        </Display>
+        <Keyboard>
           <Button value={1} onClick={handleClick}>1</Button>
           <Button value={2} onClick={handleClick}>2</Button>
           <Button value={3} onClick={handleClick}>3</Button>
@@ -121,7 +141,7 @@ function Calculator({ category }) {
           <Button value={0} onClick={handleClick}>0</Button>
           <Button value={"."} onClick={handleClick}>.</Button>
           <Button value="d" onClick={handleDelete}>D</Button>
-        </div>
+        </Keyboard>
         <div>
           <Button value="c" onClick={handleReset}>C</Button>
           <Button value="+" onClick={handleOperant}>+</Button>
@@ -131,9 +151,8 @@ function Calculator({ category }) {
         </div>
 
         <Button value="=" onClick={handleEqual}>=</Button>
-      </Keyboard>
-    </div>
+    </Calculator>
   );
 }
 
-export default Calculator
+export default FunctionCalculator
