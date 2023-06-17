@@ -19,7 +19,7 @@ function Calculator({ category }) {
 
     if (prevNumber && operant && currentNumber) {
        let equal = handleEqual()
-       setPrevNumber(equal +"")
+       setPrevNumber(equal)
        setCurrentNumber("")
        setOperant(event.target.value)
     }
@@ -37,7 +37,7 @@ function Calculator({ category }) {
 
       setResult(true)
       setPrevNumber(null)
-      setCurrentNumber(equal +"")
+      setCurrentNumber(equal)
       setOperant(null)
   
       return equal
@@ -52,7 +52,7 @@ function Calculator({ category }) {
     };
   
     const result = operants[operant](+first, +second);
-    return result;
+    return result.toString();
   };
 
   function handleClick(event) {
@@ -62,10 +62,10 @@ function Calculator({ category }) {
 
       if(event.target.value ==="."){
         setCurrentNumber("0"+ event.target.value)
-      }else if(currentNumber === "0." ){
+      }else if(currentNumber.includes(".")){
         setCurrentNumber(currentNumber + event.target.value)
       }else {
-      setCurrentNumber(event.target.value + "")
+      setCurrentNumber(event.target.value)
       setResult(false)
       }
     } else {
