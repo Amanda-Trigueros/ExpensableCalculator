@@ -86,7 +86,21 @@ function Counter() {
   }
 
   function handleDelete() {
-
+   
+    if (currentNumber) {
+      if (currentNumber.length === 1 && !prevNumber && !operant ) {
+        setCurrentNumber("0")
+      } else if (currentNumber.length === 1 && prevNumber && operant ) {
+         setCurrentNumber(null)
+      } 
+    } else if (!currentNumber && prevNumber && operant) {
+        setCurrentNumber(prevNumber)
+        setPrevNumber(null)
+        setOperant(null)
+    }
+    
+    
+    // str.slice(0, -1);
   }
 
   return (
