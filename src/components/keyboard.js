@@ -16,10 +16,11 @@ import { colors } from "../global/colors"
 export function Keyboard({ children }) {
   return (
     <div css={css`
-    padding: 32px;
-    position: relative;
-    width: 256px;
-    height: 333px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    position: center;
+    width: 254px;
+    height: 203px;
     background: ${colors.gray[400]};
     color: ${colors.gray[600]};
     `}
@@ -34,7 +35,6 @@ export function Header({ children,name}) {
     <div css={css`
     width: 256px;
     height: 50px;
-    padding: 0 32px;
     background: ${colors.blue[50]};
     color: white;
     font-family: 'Inter';
@@ -56,11 +56,10 @@ export function Header({ children,name}) {
 export function Display({ children }) {
   return (
     <div css={css`
+    
     width: 256px;
     height: 50px;
-    padding: 0 32px;
-    background: ${colors.blue[50]};
-    color: white;
+    background: ${colors.white};
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -74,7 +73,28 @@ export function Display({ children }) {
     </div>
   )
 }
-  
+
+export function Calculator({category,children}){
+  return (
+    <div css={css`
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    `}
+    > 
+      {children}
+    </div>
+  )
+}
+
+export const columnStyle = css`
+display: grid;
+grid-template-rows: repeat(4, 1fr);
+grid-gap: 5px;
+`;
+
 // export const buttonStyles = {
 //   numbers: `
 //   background: #FFFFFF;

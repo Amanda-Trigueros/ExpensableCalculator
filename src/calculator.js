@@ -4,7 +4,7 @@
  import { colors } from "./global/colors"
 import React from 'react';
 import Button from "./components/button"
-import {Calculator, Keyboard, Header, Display } from './components/keyboard';
+import {Calculator, Keyboard, Header, Display, columnStyle } from './components/keyboard';
 
 function FunctionCalculator({ category }) {
   const [currentNumber, setCurrentNumber] = React.useState("0")
@@ -129,28 +129,40 @@ function FunctionCalculator({ category }) {
         <p>${prevNumber}{operant} {currentNumber}</p>
         </Display>
         <Keyboard>
+        <div css={columnStyle}>
+          <Button value="/" onClick={handleOperant} type="operants">/</Button>
+          <Button value="x" onClick={handleOperant} type="operants">x</Button>
+          <Button value="-" onClick={handleOperant} type="operants">-</Button>
+          <Button value="+" onClick={handleOperant} type="operants">+</Button>
+        </div>
+        <div css={columnStyle}>
           <Button value={1} onClick={handleClick}>1</Button>
-          <Button value={2} onClick={handleClick}>2</Button>
-          <Button value={3} onClick={handleClick}>3</Button>
           <Button value={4} onClick={handleClick}>4</Button>
-          <Button value={5} onClick={handleClick}>5</Button>
-          <Button value={6} onClick={handleClick}>6</Button>
           <Button value={7} onClick={handleClick}>7</Button>
-          <Button value={8} onClick={handleClick}>8</Button>
-          <Button value={9} onClick={handleClick}>9</Button>
-          <Button value={0} onClick={handleClick}>0</Button>
-          <Button value={"."} onClick={handleClick}>.</Button>
-          <Button value="d" onClick={handleDelete}>D</Button>
-        </Keyboard>
-        <div>
-          <Button value="c" onClick={handleReset}>C</Button>
-          <Button value="+" onClick={handleOperant}>+</Button>
-          <Button value="-" onClick={handleOperant}>-</Button>
-          <Button value="x" onClick={handleOperant}>x</Button>
-          <Button value="/" onClick={handleOperant}>/</Button>
+
         </div>
 
-        <Button value="=" onClick={handleEqual}>=</Button>
+        <div css={columnStyle}>
+          <Button value={2} onClick={handleClick}>2</Button>
+          <Button value={5} onClick={handleClick}>5</Button>
+          <Button value={8} onClick={handleClick}>8</Button>
+          <Button value={0} onClick={handleClick}>0</Button>
+
+        </div>
+        <div css={columnStyle}>
+          <Button value={3} onClick={handleClick}>3</Button>
+          <Button value={6} onClick={handleClick}>6</Button>
+          <Button value={9} onClick={handleClick}>9</Button>
+          <Button value={"."} onClick={handleClick}>.</Button>
+
+        </div>
+        <div css={columnStyle}>
+        <Button value="d" onClick={handleDelete}>D</Button>
+        <Button value="c" onClick={handleReset}>C</Button>
+        <Button value="=" onClick={handleEqual} type="equal">=</Button>
+        </div>
+
+        </Keyboard>
     </Calculator>
   );
 }

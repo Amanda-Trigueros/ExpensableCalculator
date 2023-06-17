@@ -8,20 +8,20 @@ const buttonStyles = {
   numbers: `
   background: #FFFFFF;
   color: ${colors.gray[600]};
-  border-width: 1px;
-  border-style: solid;
-  border-color: black;
+  border: none;
   
   `,
   operators: `
   background: ${colors.gray[100]};
   color: ${colors.gray[600]};
+  border: none;
   
   `,
   equal: `
   width: 50px;
   height: 101px;
   background: ${colors.blue[50]};
+  border:none;
   
   `
 }
@@ -37,6 +37,7 @@ return (
   font-size: 20px;
   line-height: 28px;
   text-align: center;
+  border:none;
   ${buttonStyles[type]}
 
   `}
