@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from "./button"
-import { Keyboard, Header } from './keyboard';
+import Button from "./components/button"
+import { Keyboard, Header } from './components/keyboard';
 
 function Calculator({ category }) {
   const [currentNumber, setCurrentNumber] = React.useState("0")
@@ -109,7 +109,7 @@ function Calculator({ category }) {
 
   return (
     <div>
-      <Header>Groceries</Header>
+      <Header name="Groceries">Add expense to</Header>
       <Keyboard>
         <p>${prevNumber}{operant} {currentNumber}</p>
         <div>
