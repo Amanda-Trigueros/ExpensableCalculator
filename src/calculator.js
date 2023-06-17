@@ -86,7 +86,8 @@ function Counter() {
   }
 
   function handleDelete() {
-   
+   setCurrentNumber(currentNumber.toString())
+
     if (currentNumber) {
       if (currentNumber.length === 1 && !prevNumber && !operant ) {
         setCurrentNumber("0")
@@ -94,6 +95,7 @@ function Counter() {
          setCurrentNumber(null)
       } else if (currentNumber.length > 1) {
          setCurrentNumber(currentNumber.slice(0,-1))
+     
       }
     } else if (!currentNumber && prevNumber && operant) {
         setCurrentNumber(prevNumber)
@@ -101,8 +103,6 @@ function Counter() {
         setOperant(null)
     }
     
-    
-    // str.slice(0, -1);
   }
 
   return (
