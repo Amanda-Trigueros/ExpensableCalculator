@@ -111,10 +111,16 @@ function Counter() {
     console.log(`hice click en ${event.target.value}`)
 
     if (currentNumber === "0" || result) {
+
+      if(event.target.value ==="."){
+        setCurrentNumber("0"+ event.target.value)
+      }else if(currentNumber === "0." ){
+        setCurrentNumber(currentNumber + event.target.value)
+      }else {
       setCurrentNumber(event.target.value)
       setResult(false)
-    }
-    else {
+      }
+    } else {
       setCurrentNumber(currentNumber + event.target.value)
     }
 
@@ -130,7 +136,7 @@ function Counter() {
 
   return (
     <div>
-      <p>{prevNumber} {operant} {currentNumber}</p>
+      <p>${prevNumber}{operant} {currentNumber}</p>
 
       <Button value={1} onClick={handleClick}>1</Button>
       <Button value={2} onClick={handleClick}>2</Button>
@@ -142,6 +148,8 @@ function Counter() {
       <Button value={8} onClick={handleClick}>8</Button>
       <Button value={9} onClick={handleClick}>9</Button>
       <Button value={0} onClick={handleClick}>0</Button>
+      <Button value={"."} onClick={handleClick}>.</Button>
+
 
       <Button value={0} onClick={handleReset}>C</Button>
       <Button value="+" onClick={handleOperant}>+</Button>
