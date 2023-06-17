@@ -43,17 +43,17 @@ function Counter() {
       return equal
   }
 
-  const operator = ({ operant, fisrt, second }) => {
+  const operator = ({ operant, first, second }) => {
     const operants = {
       "+": (a, b) => a + b,
       "-": (a, b) => a - b,
       "x": (a, b) => a * b,
       "/": (a, b) => a / b,
     };
-    console.log(fisrt)
+    console.log(first)
     console.log(second)
   
-    const result = operants[operant](+fisrt, +second);
+    const result = operants[operant](+first, +second);
     console.log(result);
     return result;
   };
