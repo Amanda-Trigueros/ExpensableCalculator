@@ -1,7 +1,11 @@
  /** @jsxImportSource @emotion/react */
  import { css } from "@emotion/react";
  // import styled from "@emotion/styled";
- import { colors } from "../global/colors"
+ import { colors } from "../global/colors";
+ import deleteButton from "../assets/images/deleteButton.svg";
+ import checkButton from "../assets/images/checkButton.svg";
+ import equalButton from "../assets/images/equalButton.svg";
+
 //  import { buttonStyles } from "./keyboard";
 
 const buttonStyles = {
@@ -22,9 +26,30 @@ const buttonStyles = {
   height: 101px;
   background: ${colors.blue[50]};
   border:none;
+  background-image: url(${equalButton});
+  background-repeat: no-repeat;
+  background-position: center;
+  `,
+  delete:`
+  background: #FFFFFF;
+  color: ${colors.gray[600]};
+  border: none;
   
-  `
+  background-image: url(${deleteButton});
+  background-repeat: no-repeat;
+  background-position: center;
+  `,
+  check:`
+  width: 50px;
+  height: 101px;
+  background: ${colors.blue[50]};
+  border:none;
+  background-image: url(${checkButton});
+  background-repeat: no-repeat;
+  background-position: center;
+  `,
 }
+
 
 function Button({onClick, value, children, type="numbers"}) {
 return ( 

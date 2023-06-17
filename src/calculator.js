@@ -31,12 +31,19 @@ function FunctionCalculator({ category }) {
   }
   function handleEqual() {
     let equal
+    
 
     if(prevNumber && currentNumber) {
       equal = operator({operant,first: prevNumber,second: currentNumber})
     
     } else if(currentNumber === "") {
       equal = operator({operant,first: prevNumber,second: prevNumber})
+    }else if (currentNumber && !prevNumber && !result ){
+      equal = currentNumber
+    }else if (result) {
+      console.log(currentNumber)
+      equal = currentNumber
+      // setCurrentNumber(currentNumber)
     }
 
       setResult(true)
@@ -159,9 +166,9 @@ function FunctionCalculator({ category }) {
 
         </div>
         <div css={columnStyle}>
-        <Button value="d" onClick={handleDelete}>D</Button>
+        <Button value="d" onClick={handleDelete} type="delete"></Button>
         <Button value="c" onClick={handleReset}>C</Button>
-        <Button value="=" onClick={handleEqual} type="equal">=</Button>
+        <Button value="=" onClick={handleEqual} type={result ? "check" : "equal"}></Button>
         </div>
 
         </Keyboard>
