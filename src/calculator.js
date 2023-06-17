@@ -1,4 +1,4 @@
-//  /** @jsxImportSource @emotion/react */
+ /** @jsxImportSource @emotion/react */
 //  import { css } from "@emotion/react";
  // import styled from "@emotion/styled";
  import { colors } from "./global/colors"
@@ -139,7 +139,9 @@ function FunctionCalculator({ category }) {
           <Button value={1} onClick={handleClick}>1</Button>
           <Button value={4} onClick={handleClick}>4</Button>
           <Button value={7} onClick={handleClick}>7</Button>
+          <Button></Button>
 
+          
         </div>
 
         <div css={columnStyle}>
