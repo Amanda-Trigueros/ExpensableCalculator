@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from "./button"
+import { Keyboard, Header } from './keyboard';
 
-function Counter() {
+function Calculator({ category }) {
   const [currentNumber, setCurrentNumber] = React.useState("0")
   const [operant, setOperant] = React.useState(null)
   const [prevNumber, setPrevNumber] = React.useState(null)
@@ -86,9 +87,10 @@ function Counter() {
   }
 
   function handleDelete() {
-   setCurrentNumber(currentNumber.toString())
 
     if (currentNumber) {
+      setCurrentNumber(currentNumber.toString())
+
       if (currentNumber.length === 1 && !prevNumber && !operant ) {
         setCurrentNumber("0")
       } else if (currentNumber.length === 1 && prevNumber && operant ) {
@@ -107,31 +109,35 @@ function Counter() {
 
   return (
     <div>
-      <p>${prevNumber}{operant} {currentNumber}</p>
+      <Header>Groceries</Header>
+      <Keyboard>
+        <p>${prevNumber}{operant} {currentNumber}</p>
+        <div>
+          <Button value={1} onClick={handleClick}>1</Button>
+          <Button value={2} onClick={handleClick}>2</Button>
+          <Button value={3} onClick={handleClick}>3</Button>
+          <Button value={4} onClick={handleClick}>4</Button>
+          <Button value={5} onClick={handleClick}>5</Button>
+          <Button value={6} onClick={handleClick}>6</Button>
+          <Button value={7} onClick={handleClick}>7</Button>
+          <Button value={8} onClick={handleClick}>8</Button>
+          <Button value={9} onClick={handleClick}>9</Button>
+          <Button value={0} onClick={handleClick}>0</Button>
+          <Button value={"."} onClick={handleClick}>.</Button>
+          <Button value="d" onClick={handleDelete}>D</Button>
+        </div>
+        <div>
+          <Button value="c" onClick={handleReset}>C</Button>
+          <Button value="+" onClick={handleOperant}>+</Button>
+          <Button value="-" onClick={handleOperant}>-</Button>
+          <Button value="x" onClick={handleOperant}>x</Button>
+          <Button value="/" onClick={handleOperant}>/</Button>
+        </div>
 
-      <Button value={1} onClick={handleClick}>1</Button>
-      <Button value={2} onClick={handleClick}>2</Button>
-      <Button value={3} onClick={handleClick}>3</Button>
-      <Button value={4} onClick={handleClick}>4</Button>
-      <Button value={5} onClick={handleClick}>5</Button>
-      <Button value={6} onClick={handleClick}>6</Button>
-      <Button value={7} onClick={handleClick}>7</Button>
-      <Button value={8} onClick={handleClick}>8</Button>
-      <Button value={9} onClick={handleClick}>9</Button>
-      <Button value={0} onClick={handleClick}>0</Button>
-      <Button value={"."} onClick={handleClick}>.</Button>
-
-
-      <Button value={0} onClick={handleReset}>C</Button>
-      <Button value="+" onClick={handleOperant}>+</Button>
-      <Button value="-" onClick={handleOperant}>-</Button>
-      <Button value="x" onClick={handleOperant}>x</Button>
-      <Button value="/" onClick={handleOperant}>/</Button>
-      <Button value="=" onClick={handleEqual}>=</Button>
-      <Button value="d" onClick={handleDelete}>D</Button>
-
+        <Button value="=" onClick={handleEqual}>=</Button>
+      </Keyboard>
     </div>
   );
 }
 
-export default Counter
+export default Calculator

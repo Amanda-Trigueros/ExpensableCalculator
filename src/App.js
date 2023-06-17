@@ -1,10 +1,10 @@
-import Counter from "./calculator"
+import Calculator from "./calculator"
 
 function App() {
   return (
   <div>
-    <h1>Hola Mundo</h1>
-    <Counter/>
+    <h1>Calculator</h1>
+    <Calculator/>
   </div>
   );
 
