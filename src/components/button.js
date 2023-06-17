@@ -1,6 +1,5 @@
  /** @jsxImportSource @emotion/react */
  import { css } from "@emotion/react";
- // import styled from "@emotion/styled";
  import { colors } from "../global/colors";
  import deleteButton from "../assets/images/deleteButton.svg";
  import checkButton from "../assets/images/checkButton.svg";
@@ -24,7 +23,6 @@ const buttonStyles = {
   equal: `
   width: 50px;
   height: 101px;
-  background: ${colors.blue[50]};
   border:none;
   background-image: url(${equalButton});
   background-repeat: no-repeat;
@@ -42,7 +40,6 @@ const buttonStyles = {
   check:`
   width: 50px;
   height: 101px;
-  background: ${colors.blue[50]};
   border:none;
   background-image: url(${checkButton});
   background-repeat: no-repeat;
@@ -51,18 +48,18 @@ const buttonStyles = {
 }
 
 
-function Button({onClick, value, children, type="numbers"}) {
+function Button({onClick, value, children, type="numbers", color}) {
 return ( 
   <button value={value} onClick={onClick} css={css`
   width: 50px;
   height: 50px;
-  font-family: 'Inter';
-  font-style: normal;
+  font-family: sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
   text-align: center;
   border:none;
+  background: ${color};
   ${buttonStyles[type]}
 
   `}

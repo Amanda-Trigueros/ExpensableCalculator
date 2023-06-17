@@ -16,6 +16,8 @@ import { colors } from "../global/colors"
   export function Calculator({category,children}){
     return (
       <div css={css`
+      display: grid;
+
       max-width: 256px;
       margin: 50px auto;
       padding: 23px;
@@ -28,20 +30,24 @@ import { colors } from "../global/colors"
     )
   }
 
-  export function Header({ children,name}) {
+  export function Header({ children,name,color}) {
     return (
       <div css={css`
-      width: 256px;
-      height: 50px;
-      background: ${colors.blue[50]};
+
+      display: grid;
+      max-width: 265px;
+      max-height: 50px;
+      grid-template-columns: 25% 1fr;
+      grid-template-rows: 1fr 1fr;
+      align-items:center;
+
+      
+      background: ${color};
       color: white;
-      font-family: 'Inter';
+      font-family: sans-serif;
       font-style: normal;
       font-weight: 500;
       font-size: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       `}
       > 
       {children}
@@ -50,21 +56,24 @@ import { colors } from "../global/colors"
       </div>
     )
   }
-  
+ 
+
   export function Display({ children }) {
     return (
       <div css={css`
       
-      width: 254px;
-      height: 50px;
-      background: ${colors.white};
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 500;
-      font-size: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 254px;
+      height: 50px;
+      background: ${colors.white};
+      font-family: sans-serif;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 28px;
+      color: ${colors.gray[600]};
+      text-align: center;
       `}
       > 
         {children}
@@ -80,8 +89,8 @@ import { colors } from "../global/colors"
       width: 254px;
       height: 203px;
       background: ${colors.gray[200]};
-      color: ${colors.gray[600]};
       gap: 1px;
+    
     `}
     > 
       {children}
@@ -98,19 +107,44 @@ grid-template-rows: repeat(1, 1fr);
 grid-gap: 1px;
 `;
 
-// export const buttonStyles = {
-//   numbers: `
-//   background: #FFFFFF;
-//   color: ${colors.gray[600]}
-//   `,
-//   operators: `
-//   background: ${colors.gray[100]};
-//   color: ${colors.gray[600]}
-//   `,
-//   equal: `
-//   width: 50px;
-//   height: 101px;
-//   background: ${colors.blue[50]};
-//   `
-// }
 
+export const HeaderStyle = {
+  iconStyle:`
+  grid-column: 1;
+  grid-row: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left:12px;
+
+  `,
+titleStyle: `
+grid-column: 2;
+grid-row: 1;
+display: flex;
+align-items: center;
+width: 104px;
+height: 16px;
+font-family: sans-serif;
+font-weight: 400;
+font-size: 12px;
+line-height: 16px;
+margin: 0;
+
+`,
+nameStyle:`
+grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  width: 104px;
+  height: 24px;
+  font-family: sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+
+`}

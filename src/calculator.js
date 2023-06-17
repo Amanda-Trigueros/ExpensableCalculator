@@ -1,12 +1,16 @@
  /** @jsxImportSource @emotion/react */
-//  import { css } from "@emotion/react";
+ import { css } from "@emotion/react";
  // import styled from "@emotion/styled";
- import { colors } from "./global/colors"
 import React from 'react';
 import Button from "./components/button"
-import {Calculator, Keyboard, Header, Display, columnStyle } from './components/keyboard';
+import {Calculator, Keyboard, Header, Display, columnStyle,HeaderStyle } from './components/keyboard';
+import mult from "./assets/images/mult.svg"
+import { colors } from "./global/colors";
 
 function FunctionCalculator({ category }) {
+
+  const { name, color, icon } = category;
+
   const [currentNumber, setCurrentNumber] = React.useState("0")
   const [operant, setOperant] = React.useState(null)
   const [prevNumber, setPrevNumber] = React.useState(null)
@@ -130,14 +134,21 @@ function FunctionCalculator({ category }) {
 
   return (
     <Calculator>
-      <Header name="Groceries">Add expense to</Header>
+      <Header color={color}>
+
+       <img src={icon} css={css`${HeaderStyle.iconStyle}`} alt="Icon" />
+       <h1 css={css`${HeaderStyle.titleStyle}`}> Add expenses to</h1>
+      <h1 css={css`${HeaderStyle.nameStyle}`}>{name}</h1>
+     
+
+      </Header>
       
         <Display>
         <p>${prevNumber}{operant} {currentNumber}</p>
         </Display>
         <Keyboard>
         <div css={columnStyle}>
-          <Button value="/" onClick={handleOperant} type="operants">/</Button>
+          <Button value="/" onClick={handleOperant} type="operants">÷</Button>
           <Button value="x" onClick={handleOperant} type="operants">x</Button>
           <Button value="-" onClick={handleOperant} type="operants">-</Button>
           <Button value="+" onClick={handleOperant} type="operants">+</Button>
@@ -167,8 +178,8 @@ function FunctionCalculator({ category }) {
         </div>
         <div css={columnStyle}>
         <Button value="d" onClick={handleDelete} type="delete"></Button>
-        <Button value="c" onClick={handleReset}>C</Button>
-        <Button value="=" onClick={handleEqual} type={result ? "check" : "equal"}></Button>
+        <Button value="c" onClick={handleReset}>c</Button>
+        <Button value="=" onClick={handleEqual} color={color} type={result ? "check" : "equal"} ></Button>
         </div>
 
         </Keyboard>
