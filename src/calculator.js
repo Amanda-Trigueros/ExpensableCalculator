@@ -19,7 +19,7 @@ function Calculator({ category }) {
 
     if (prevNumber && operant && currentNumber) {
        let equal = handleEqual()
-       setPrevNumber(equal)
+       setPrevNumber(equal +"")
        setCurrentNumber("")
        setOperant(event.target.value)
     }
@@ -32,13 +32,12 @@ function Calculator({ category }) {
       equal = operator({operant,first: prevNumber,second: currentNumber})
     
     } else if(currentNumber === "") {
-      console.log(prevNumber)
       equal = operator({operant,first: prevNumber,second: prevNumber})
     }
 
       setResult(true)
       setPrevNumber(null)
-      setCurrentNumber(equal)
+      setCurrentNumber(equal +"")
       setOperant(null)
   
       return equal
@@ -51,11 +50,8 @@ function Calculator({ category }) {
       "x": (a, b) => a * b,
       "/": (a, b) => a / b,
     };
-    console.log(first)
-    console.log(second)
   
     const result = operants[operant](+first, +second);
-    console.log(result);
     return result;
   };
 
@@ -69,7 +65,7 @@ function Calculator({ category }) {
       }else if(currentNumber === "0." ){
         setCurrentNumber(currentNumber + event.target.value)
       }else {
-      setCurrentNumber(event.target.value)
+      setCurrentNumber(event.target.value + "")
       setResult(false)
       }
     } else {
@@ -78,7 +74,7 @@ function Calculator({ category }) {
 
   }
 
-  function handleReset(event) {
+  function handleReset() {
     console.log(`you restart the calculator`)
     setCurrentNumber("0")
     setPrevNumber(null)
@@ -89,13 +85,13 @@ function Calculator({ category }) {
   function handleDelete() {
 
     if (currentNumber) {
-      setCurrentNumber(currentNumber.toString())
 
       if (currentNumber.length === 1 && !prevNumber && !operant ) {
         setCurrentNumber("0")
       } else if (currentNumber.length === 1 && prevNumber && operant ) {
          setCurrentNumber(null)
       } else if (currentNumber.length > 1) {
+        console.log("this length 1")
          setCurrentNumber(currentNumber.slice(0,-1))
      
       }
